@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/feature']], extensions: [], userRemoteConfigs: [[credentialsId: '5ac9fa03-ebcc-470b-ba1a-90dad9c87cd7', url: 'https://github.com/naveen4152/jenkins_pipeline_demo.git']]])
+            }
+        }
+        stage('Build'){
+            steps {
+                git branch: 'feature', credentialsId: '5ac9fa03-ebcc-470b-ba1a-90dad9c87cd7', url: 'https://github.com/naveen4152/jenkins_pipeline_demo.git'
+                echo 'Helo world'
+            }
+            
+        }
+    }
+}
